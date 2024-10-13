@@ -19,7 +19,7 @@ public class TC_001 extends BasePages{
         loginPage.loginPortal(userName,password);
     }
     @DataProvider(name = "LoginDataProvider")
-    public Object[][] LoginDataProvider() {
+    public Object[][] loginDataProvider() {
         int ttlRows = ReadExcelFile.getRowCount(fileName, "LoginData");
         int ttlColumns = ReadExcelFile.getColCount(fileName, "LoginData");
         List<String[]> validRows = new ArrayList<>();

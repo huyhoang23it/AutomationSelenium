@@ -15,11 +15,15 @@ public class ReadExcelFile {
     public static XSSFCell cell;
     public static String getCellValue(String fileName, String sheetName, int rowNo, int cellNo) {
         try {
+            // Mở tệp Excel từ đường dẫn.
             inputStream = new FileInputStream(fileName);
+            // Tạo đối tượng WorkBook từ FileInputStream.
             workBook = new XSSFWorkbook(inputStream);
+            // Lấy sheet theo tên từ file Excel.
             excelSheet = workBook.getSheet(sheetName);
+            // Lấy giá trị của ô (cell) từ một hàng (row) và cột (cell) xác định.
             cell = excelSheet.getRow(rowNo).getCell(cellNo);
-
+// Kiểm tra nếu ô không rỗng và trả về giá trị của nó.
             if (cell != null) {
                 switch (cell.getCellType()) {
                     case STRING:
@@ -59,6 +63,7 @@ public class ReadExcelFile {
             inputStream= new FileInputStream(fileName);
             workBook= new XSSFWorkbook(inputStream);
             excelSheet=workBook.getSheet(sheetName);
+            // Đếm tổng số hàng trong sheet
             int ttlRows= excelSheet.getLastRowNum() + 1;
             workBook.close();
             return ttlRows;
@@ -75,6 +80,7 @@ public class ReadExcelFile {
             inputStream= new FileInputStream(fileName);
             workBook= new XSSFWorkbook(inputStream);
             excelSheet=workBook.getSheet(sheetName);
+            // Lấy tổng số cột từ hàng đầu tiên.
             int ttlCells= excelSheet.getRow(0).getLastCellNum();
             workBook.close();
             return ttlCells;
