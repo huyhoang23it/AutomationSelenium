@@ -14,8 +14,6 @@ public class TC_001 extends BasePages{
     @Test(priority = 1, dataProvider = "LoginDataProvider")
     void verifyLogin(String userName, String password){
         LoginPage loginPage = new LoginPage(driver);
-       // String userName = "12345@gmail.com";
-        //String password = "123";
         loginPage.loginPortal(userName,password);
     }
     @DataProvider(name = "LoginDataProvider")
@@ -46,6 +44,4 @@ public class TC_001 extends BasePages{
         String[][] data = new String[validRows.size()][ttlColumns];
         return validRows.toArray(data);
     }
-
-
 }
