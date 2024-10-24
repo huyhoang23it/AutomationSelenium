@@ -3,18 +3,30 @@ package fptu.econest.testcase;
 import fptu.econest.pages.BasePages;
 import fptu.econest.pages.LoginPage;
 import fptu.econest.ultilities.ReadExcelFile;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TC_001 extends BasePages{
     String fileName = System.getProperty("user.dir")+"\\TestData\\TestData.xlsx";
     @Test(priority = 1, dataProvider = "LoginDataProvider")
-    void verifyLogin(String userName, String password){
+    void verifyLogin(String userName, String password) throws IOException {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginPortal(userName,password);
+        if(loginPage.isLoginSuccessful())
+        {
+            System.out.println("Test Passed");
+            Assert.assertTrue(true);
+        }
+        else
+        {
+            captureScreenShot(driver,"VerifyLogin");
+            Assert.assertTrue(false);
+        }
     }
     @DataProvider(name = "LoginDataProvider")
     public Object[][] loginDataProvider() {

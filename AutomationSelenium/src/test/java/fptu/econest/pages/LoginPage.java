@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
     WebDriver driver;
+    private String url = "https://econestxomuop.id.vn/Shop";
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver,this);
@@ -24,5 +25,10 @@ public class LoginPage {
         uName.sendKeys(userName);
         pass.sendKeys(password);
         loginBtn.click();
+    }
+    public boolean isLoginSuccessful(){
+        String expectedUrl = url;
+        String actualUrll = driver.getCurrentUrl();
+        return actualUrll.equals(expectedUrl);
     }
 }
